@@ -1,0 +1,129 @@
+@import '@fontsource/cairo/400.css';
+@import '@fontsource/cairo/600.css';
+@import '@fontsource/cairo/700.css';
+@import '@fontsource/cairo/800.css';
+@import 'tailwindcss';
+
+/* الهوية البصرية لـ«مِحْوَر»: أخضر زيتوني داكن، ذهبي هادئ، خلفيات كريمية */
+@theme {
+  --font-sans: 'Cairo', system-ui, sans-serif;
+
+  --color-olive-50: #f4f6ee;
+  --color-olive-100: #e6ebd8;
+  --color-olive-200: #cdd7b2;
+  --color-olive-300: #aab986;
+  --color-olive-400: #869a5f;
+  --color-olive-500: #677c44;
+  --color-olive-600: #506235;
+  --color-olive-700: #3f4e2b;
+  --color-olive-800: #344025;
+  --color-olive-900: #2a331e;
+
+  --color-gold-50: #fbf7ec;
+  --color-gold-100: #f4eacd;
+  --color-gold-200: #e9d6a0;
+  --color-gold-300: #dcbf72;
+  --color-gold-400: #c9a85a;
+  --color-gold-500: #b08d3f;
+  --color-gold-600: #8f7131;
+  --color-gold-700: #6e5627;
+
+  --color-cream-50: #fffdf8;
+  --color-cream-100: #faf6ec;
+  --color-cream-200: #f2ebda;
+  --color-cream-300: #e6dcc4;
+
+  --color-ink: #26291f;
+  --color-muted: #5f6253;
+}
+
+html {
+  background: var(--color-cream-100);
+  color: var(--color-ink);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  min-height: 100dvh;
+  line-height: 1.7;
+}
+
+/* تركيز مرئي واضح للوحة المفاتيح */
+:focus-visible {
+  outline: 3px solid var(--color-gold-400);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* حقول الإدخال بحجم 16px على الهاتف لتجنب التكبير التلقائي */
+input,
+textarea,
+select {
+  font-size: 16px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-2xl border border-cream-300 bg-cream-50 shadow-[0_1px_2px_rgba(42,51,30,0.06)];
+  }
+  .btn,
+  .btn-primary,
+  .btn-gold,
+  .btn-ghost,
+  .btn-danger {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-xl px-4 py-2 font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply bg-olive-700 text-cream-50 hover:bg-olive-800;
+  }
+  .btn-gold {
+    @apply bg-gold-400 text-olive-900 hover:bg-gold-300;
+  }
+  .btn-ghost {
+    @apply border border-cream-300 bg-cream-50 text-olive-800 hover:bg-cream-200;
+  }
+  .btn-danger {
+    @apply border border-red-200 bg-red-50 text-red-800 hover:bg-red-100;
+  }
+  .btn-sm {
+    @apply min-h-9 rounded-lg px-3 py-1 text-sm;
+  }
+  .input {
+    @apply w-full rounded-xl border border-cream-300 bg-white px-3 py-2 text-ink placeholder:text-muted/70 focus:border-olive-500 focus:outline-none focus:ring-2 focus:ring-olive-200;
+  }
+  .label {
+    @apply mb-1 block text-sm font-semibold text-olive-800;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold;
+  }
+}
+
+/* الطباعة: للتقرير وحفظه PDF من المتصفح */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  html,
+  body {
+    background: white;
+  }
+  .card {
+    box-shadow: none;
+    break-inside: avoid;
+  }
+  @page {
+    size: A4;
+    margin: 14mm;
+  }
+}
