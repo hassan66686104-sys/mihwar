@@ -22,7 +22,7 @@ async function rpc(fn: string, args: Record<string, unknown>, token = KEY) {
   })
   return { status: r.status, body: await r.json().catch(() => null) }
 }
-const broadcasts = async () => (await (await fetch('http://127.0.0.1:54333')).json()).broadcasts as number
+const broadcasts = async () => ((await (await fetch('http://127.0.0.1:54333')).json()) as { broadcasts: number }).broadcasts
 
 test.describe.configure({ mode: 'serial' })
 
