@@ -18,7 +18,7 @@ test('الجلسة التجريبية موسومة، والمناظرة تقيّ
   const t = await (await browser.newContext({ viewport: { width: 1366, height: 900 } })).newPage()
   await t.goto('/teacher/login')
   await t.getByRole('button', { name: 'إنشاء حساب جديد' }).click()
-  await t.getByLabel('البريد الإلكتروني').fill(`demo${Date.now()}@example.com`)
+  await t.getByLabel('اسم المستخدم أو البريد الإلكتروني').fill(`demo${Date.now()}`) // اسم مستخدم بلا بريد
   await t.getByLabel('كلمة المرور').fill('Strong-Pass-123')
   await t.getByRole('button', { name: 'إنشاء الحساب' }).click()
   await t.getByLabel('الاسم الظاهر').fill('أ. معلم التجربة')
